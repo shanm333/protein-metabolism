@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>蛋白质：从一块肉到一身肌肉 · 代谢互动实验室</title>
+<style>
+:root{
+  --teal:#0f766e; --teal-deep:#115e59; --teal-light:#e4f4f1; --teal-mid:#99d5cc;
+  --ink:#24303a; --muted:#64748b; --bg:#f4f7f7; --card:#ffffff; --line:#e2e8e8;
+  --amber:#9a5b0c; --amber-bg:#fdf6e7; --amber-line:#f3dfb3;
+  --violet:#5b21b6; --violet-bg:#f4efff;
+  --blue:#1d4ed8; --blue-bg:#eef4ff;
+  --green:#15803d; --green-bg:#eefaf1;
+  --red:#b91c1c; --red-bg:#fdecec;
+  --indigo:#4338ca; --indigo-deep:#3730a3; --indigo-bg:#eef0fb; --indigo-mid:#c3c8f0;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:-apple-system,"Segoe UI","Microsoft YaHei","PingFang SC",sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.8;font-size:16px}
+.topbar{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);padding:10px 20px;display:flex;align-items:center;gap:10px}
+.topbar .logo{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,#4338ca,#818cf8);
+  color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;flex:none}
+.topbar b{font-size:15px}
+.topbar .sub{color:var(--muted);font-size:12.5px;margin-left:2px}
+.layout{display:flex;max-width:1180px;margin:0 auto;gap:30px;padding:26px 20px 80px}
+nav.sidebar{width:225px;flex:none;position:sticky;top:72px;align-self:flex-start;
+  background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 10px}
+nav.sidebar .st{font-size:12px;color:var(--muted);padding:2px 12px 8px;letter-spacing:2px}
+nav.sidebar a{display:flex;align-items:center;gap:9px;padding:8px 12px;border-radius:9px;
+  color:var(--ink);text-decoration:none;font-size:13.8px;transition:.15s}
+nav.sidebar a:hover{background:var(--indigo-bg)}
+nav.sidebar a.active{background:var(--indigo-bg);color:var(--indigo-deep);font-weight:600}
+nav.sidebar a .n{width:20px;height:20px;flex:none;border-radius:6px;background:#eef1f1;color:var(--muted);
+  font-size:11px;display:flex;align-items:center;justify-content:center;font-weight:700}
+nav.sidebar a.active .n{background:var(--indigo);color:#fff}
+main{flex:1;min-width:0;max-width:800px}
+section{margin-bottom:52px;scroll-margin-top:76px}
+.hero{background:linear-gradient(135deg,#3730a3 0%,#4f46e5 55%,#818cf8 100%);border-radius:18px;
+  color:#fff;padding:38px 36px 34px;box-shadow:0 10px 30px -12px rgba(67,56,202,.45)}
+.hero h1{margin:0 0 10px;font-size:28px;letter-spacing:.5px}
+.hero p{margin:0 0 18px;color:#dfe3fd;font-size:15.5px;max-width:600px}
+.hero .chips{display:flex;flex-wrap:wrap;gap:8px}
+.hero .chips span{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);
+  padding:3px 13px;border-radius:99px;font-size:12.5px}
+h2{display:flex;align-items:center;gap:12px;font-size:22px;margin:0 0 6px;letter-spacing:.5px}
+h2 .cn{width:34px;height:34px;flex:none;border-radius:10px;background:var(--indigo);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800}
+.sec-sub{color:var(--muted);font-size:14px;margin:0 0 18px;padding-left:46px}
+h3{font-size:17.5px;margin:30px 0 10px;color:var(--indigo-deep);display:flex;align-items:center;gap:8px}
+h3::before{content:"";width:4px;height:18px;border-radius:2px;background:var(--indigo);display:inline-block;flex:none}
+p{margin:10px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin:14px 0}
+.tip,.pit,.ex,.do,.sci{border-radius:12px;padding:13px 16px 13px 14px;margin:14px 0;font-size:15px;border:1px solid}
+.tip{background:var(--blue-bg);border-color:#c9dbfa}
+.pit{background:var(--amber-bg);border-color:var(--amber-line)}
+.ex{background:var(--violet-bg);border-color:#e0d3fb}
+.do{background:var(--green-bg);border-color:#bfe8cc}
+.sci{background:#f0f2f8;border-color:#d8ddf0}
+.tip b,.pit b,.ex b,.do b,.sci b{display:block;margin-bottom:3px;font-size:14.5px}
+.tip b{color:var(--blue)} .pit b{color:var(--amber)} .ex b{color:var(--violet)}
+.do b{color:var(--green)} .sci b{color:#3b4570}
+.tbl-wrap{overflow-x:auto;margin:14px 0}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:12px;overflow:hidden;
+  font-size:14px;box-shadow:0 0 0 1px var(--line)}
+th{background:var(--indigo-bg);color:var(--indigo-deep);text-align:left;padding:9px 13px;font-size:13.5px;white-space:nowrap}
+td{padding:9px 13px;border-top:1px solid #eef2f2;vertical-align:top}
+tr:nth-child(even) td{background:#fafbfc}
+.formula{background:#fbfcfd;border:1px dashed var(--indigo-mid);border-radius:12px;text-align:center;
+  padding:14px 10px;margin:14px 0;font-size:17px;font-weight:600;color:var(--indigo-deep);letter-spacing:1px}
+.formula small{display:block;font-weight:400;color:var(--muted);font-size:13px;margin-top:6px;letter-spacing:0}
+.widget{background:linear-gradient(180deg,#ffffff,#f5f6fd);border:1.5px solid var(--indigo-mid);
+  border-radius:14px;padding:18px 20px;margin:18px 0;box-shadow:0 6px 18px -12px rgba(67,56,202,.35)}
+.w-head{font-weight:700;color:var(--indigo);font-size:15.5px;margin-bottom:2px}
+.w-desc{font-size:13.8px;color:var(--muted);margin:0 0 10px}
+.widget svg text{font-family:-apple-system,"Segoe UI","Microsoft YaHei",sans-serif}
+.w-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0 4px}
+.wbtn{border:1.5px solid var(--indigo);background:#fff;color:var(--indigo);border-radius:10px;
+  padding:6px 15px;font-size:13.5px;cursor:pointer;font-family:inherit;transition:.15s}
+.wbtn:hover{background:var(--indigo);color:#fff}
+.wbtn.primary{background:var(--indigo);color:#fff}
+.wbtn.w-tab.active{background:var(--indigo);color:#fff}
+.wbtn:disabled{opacity:.45;cursor:default}
+.ctrl{display:flex;align-items:center;gap:10px;margin:9px 0;font-size:14px;flex-wrap:wrap}
+.ctrl label{min-width:150px;font-weight:600}
+.ctrl .val{font-family:Consolas,monospace;color:var(--indigo);font-weight:700;min-width:80px}
+input[type=range]{accent-color:var(--indigo);flex:1;min-width:140px;max-width:340px}
+.w-stat{background:#fff;border:1px dashed var(--indigo-mid);border-radius:10px;padding:8px 14px;font-size:14px;margin:8px 0}
+.w-stat b{color:var(--indigo-deep)}
+.w-note{font-size:13.5px;background:var(--blue-bg);border-radius:10px;padding:8px 14px;margin-top:10px}
+.w-note b{color:var(--blue)}
+.big-num{font-size:36px;font-weight:800;color:var(--indigo);font-family:Consolas,monospace;line-height:1.2}
+.quiz{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin:14px 0}
+.quiz .qt{font-weight:600;margin-bottom:10px}
+.quiz .opt{display:block;width:100%;text-align:left;background:#f8fafa;border:1.5px solid var(--line);
+  border-radius:10px;padding:9px 14px;margin:7px 0;cursor:pointer;font-size:14.5px;font-family:inherit;color:var(--ink);transition:.15s}
+.quiz .opt:hover{border-color:var(--indigo)}
+.quiz .opt.right{background:var(--green-bg);border-color:#4caf6d;color:var(--green);font-weight:600}
+.quiz .opt.right::after{content:" ✓";font-weight:800}
+.quiz .opt.wrong{background:var(--red-bg);border-color:#e08585;color:var(--red)}
+.quiz .opt.wrong::after{content:" ✗";font-weight:800}
+.quiz .exp{display:none;background:var(--blue-bg);border-radius:10px;padding:10px 14px;font-size:14px;margin-top:8px}
+.quiz.done .opt{cursor:default;pointer-events:none}
+footer{border-top:1px solid var(--line);margin-top:40px;padding-top:18px;color:var(--muted);font-size:13px;text-align:center}
+@media (max-width:920px){
+  .layout{flex-direction:column}
+  nav.sidebar{position:static;width:auto;display:flex;flex-wrap:wrap;gap:2px;padding:8px}
+  nav.sidebar .st{width:100%;padding-bottom:2px}
+  nav.sidebar a{padding:6px 10px;font-size:13px}
+  .hero{padding:26px 22px}
+  h2 .cn{width:30px;height:30px}
+  .sec-sub{padding-left:0}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="logo">蛋</div>
+  <b>蛋白质代谢互动实验室</b><span class="sub">从一块肉到一身肌肉 · 写给营养与医学学习者</span>
+</div>
+
+<div class="layout">
+<nav class="sidebar">
+  <div class="st">目 录</div>
+  <a href="#intro" class="active"><span class="n">0</span>大局观 · 蛋白质的一生</a>
+  <a href="#digest"><span class="n">1</span>消化吸收 · 拆解流水线</a>
+  <a href="#pool"><span class="n">2</span>氨基酸池 · 必需氨基酸</a>
+  <a href="#turnover"><span class="n">3</span>合成与周转 · 肌肉账本</a>
+  <a href="#urea"><span class="n">4</span>氨的出路 · 尿素循环</a>
+  <a href="#need"><span class="n">5</span>需要量 · 食物与互补</a>
+  <a href="#myth"><span class="n">6</span>辟谣 · 科研前沿</a>
+  <a href="#quiz"><span class="n">7</span>自测一下</a>
+</nav>
+
+<main>
+
+<section id="intro">
+  <div class="hero">
+    <h1>蛋白质：身体的"砖块 + 机器 + 燃料"</h1>
+    <p>你吃的每一口鸡蛋、牛奶、豆子，都被拆成 20 种氨基酸积木，再按需重新组装成"你"。消化、吸收、周转、脱氨排氮——营养学最重要的主线之一，配上 3 个动手实验。</p>
+    <div class="chips"><span>消化流水线</span><span>必需氨基酸卡片</span><span>需要量计算器</span><span>尿素循环</span><span>随堂自测</span></div>
+  </div>
+
+  <h2 style="margin-top:34px"><span class="cn">0</span>大局观：蛋白质的一生</h2>
+  <p class="sec-sub">预计 10 分钟 · 蛋白质远不只是"长肌肉"</p>
+
+  <p>体内蛋白质的功能清单远超想象：<b>酶</b>（消化、代谢全部化学反应）、<b>抗体</b>（免疫）、<b>血红蛋白</b>（运氧）、<b>激素与受体</b>（胰岛素就是蛋白质）、<b>肌纤维</b>（收缩）、<b>胶原蛋白</b>（皮肤骨髖支架）、<b>载体</b>（白蛋白运药运钙）……身体约 16%~20% 的重量是蛋白质，其中约 <b>40% 在肌肉</b>，其余遍布每个细胞。</p>
+
+  <div class="card">
+    <p style="margin-top:0"><b>一生主线（先背这条）：</b>膳食蛋白 → 拆成氨基酸/小肽 → 吸收入血 → 汇入<b>氨基酸池</b>（全身游离氨基酸，仅约 100g，周转极快）→ 三条去向：① 合成身体蛋白（优先）② 合成含氮功能物（神经递质、血红素、嘌呤嘧啶）③ <b>供能/转糖转脂（脱氨基，氮以尿素排出）</b>。身体没有"氨基酸仓库"——池子小、周转快，<b>所以优质蛋白要每餐 distributed（分摊到三餐）供应</b>，这和糖原、脂肪能"囤"完全不同。</p>
+  </div>
+
+  <div class="tbl-wrap"><table>
+    <tr><th></th><th>糖（碳水）</th><th>脂肪</th><th>蛋白质</th></tr>
+    <tr><td>热量</td><td>4 kcal/g</td><td>9 kcal/g</td><td>4 kcal/g</td></tr>
+    <tr><td>体内储备</td><td>糖原 ~500g（可"囤"）</td><td>脂肪组织（可大量"囤"）</td><td><b>无专门仓库</b>，都是"功能性蛋白"</td></tr>
+    <tr><td>供能地位</td><td>首选快速能源</td><td>储能主力</td><td><b>最后考虑</b>——拆自己房子取暖</td></tr>
+    <tr><td>过量结局</td><td>转糖原/脂肪</td><td>储存（效率最高 ~96%）</td><td>脱氨→尿素排出 + 碳骨架转能量，<b>多吃不长肌肉</b></td></tr>
+  </table></div>
+
+  <div class="tip"><b>💡 直觉理解：为什么蛋白质过量不"长肌肉"</b>
+  肌肉合成走的是"需求驱动"：训练刺激 + 每餐足量必需氨基酸信号。超出合成能力的氨基酸不会排队等下次用，而是<b>脱氨基被当燃料烧掉或转成糖/脂</b>，氮从尿里走。一句话：蛋白质是"限量供应的高级建材"，不是"囤着用的煤"。</div>
+</section>
+
+<section id="digest">
+  <h2><span class="cn">1</span>消化吸收：蛋白质拆解流水线</h2>
+  <p class="sec-sub">预计 20 分钟 · 和碳水一样，只有拆到"最小单元"才能过墙</p>
+
+  <p>蛋白质的吸收单元是<b>氨基酸 + 2~3 肽（寡肽）</b>。整条流水线的特殊之处：胃第一次真正发力（蛋白质是胃的主战场，碳水只是路过）。</p>
+
+  <div class="widget">
+    <div class="w-head">🧪 互动实验室：蛋白质消化流水线（逐步走）</div>
+    <p class="w-desc">以一块鸡胸肉为例，六站旅程，注意每一站酶的名字与作用位点。</p>
+    <svg id="digSvg" viewBox="0 0 620 210"></svg>
+    <div class="w-row">
+      <button class="wbtn" id="digPrev">← 上一步</button>
+      <button class="wbtn primary" id="digNext">下一步 →</button>
+      <button class="wbtn" id="digReset">↺ 重置</button>
+      <span class="w-stat" style="margin:0" id="digStep"></span>
+    </div>
+    <div class="w-stat" id="digText"></div>
+    <div class="w-note">👉 对比碳水流水线的记忆点：<b>胃在蛋白质消化里是主力之一（胃蛋白酶+胃酸变性），而碳水过胃只是路过</b>；真正把蛋白质拆到"可吸收单元"的收官动作发生在小肠，与碳水一致。</div>
+  </div>
+
+  <h3>1.2 过墙之门：氨基酸与寡肽各自有门</h3>
+  <div class="tbl-wrap"><table>
+    <tr><th>门（转运体）</th><th>运谁</th><th>方式</th><th>要点</th></tr>
+    <tr><td>各类氨基酸转运体（如 Na⁺ 依赖中性 AA 载体）</td><td>游离氨基酸</td><td>主动转运为主，分类别运输（酸性/碱性/中性各走各门）</td><td>同类氨基酸之间存在"竞争共享通道"——大剂量单一补剂可能挤占其他 AA 吸收</td></tr>
+    <tr><td><b>PEPT1</b></td><td>二肽 / 三肽</td><td>H⁺ 协同主动转运</td><td><b>效率高于游离氨基酸</b>——水解产物里约 2/3 以小肽形式吸收。这也是"水解乳清/小肽配方"吸收快的原理</td></tr>
+  </table></div>
+
+  <div class="tip"><b>💡 直觉理解：为什么婴儿和病人爱用"水解蛋白"</b>
+  拆得越碎，过墙越省事。整蛋白需要完整的消化能力；水解蛋白（预拆成小肽）+ PEPT1 高效门 = 消化负担最小。婴儿深度水解配方防过敏的逻辑也在此：蛋白碎片越小，越不容易触发免疫识别。</div>
+
+  <div class="sci"><b>🔬 科研视角</b>
+  除了营养吸收，肠道还是蛋白质代谢的活跃器官：肠上皮自己消耗大量谷氨酰胺（肠细胞第一燃料）；微生物发酵未消化蛋白产生支链脂肪酸/胺类/硫化氢——"蛋白摄入量 × 肠道菌群"正是营养学当前热点之一（与代糖菌群研究同属个性化营养赛道）。</div>
+</section>
+
+<section id="pool">
+  <h2><span class="cn">2</span>氨基酸池：必需与非必需</h2>
+  <p class="sec-sub">预计 25 分钟 · 9 个"必须吃饭才能拿到"的积木</p>
+
+  <p>人体 20 种氨基酸里，<b>9 种是必需氨基酸（EAA）</b>：体内<b>完全不能合成</b>（或合成速度远跟不上需求），只能从食物拿。点卡片看它们的档案与记忆线索：</p>
+
+  <div class="widget">
+    <div class="w-head">🧪 互动实验室：9 种必需氨基酸卡片</div>
+    <p class="w-desc">点选查看每个氨基酸的功能亮点与"缺了会怎样"。</p>
+    <div class="w-row" id="eaaBtns" style="margin-bottom:6px"></div>
+    <div class="w-stat" id="eaaDetail" style="min-height:92px"></div>
+    <div class="w-note">👉 记忆口诀（甲硫=蛋）："<b>甲（蛋）组携（缬）一两（异亮、亮）本（苯丙）淡（色）书（苏）来（赖）</b>"。其中<b>亮氨酸</b>单独承担"开工信号"角色——它像合成肌肉的"发令枪"，这就是乳清蛋白被健身圈推崇的原因（亮氨酸含量高）。</div>
+  </div>
+
+  <div class="grid">
+    <div class="mini"><b>非必需 ≠ 不重要</b><div class="eg">它们只是身体"会造"。但造需要原料和步骤——如谷氨酰胺在重症/大手术时身体造不够，变成"条件必需"。酪氨酸由苯丙氨酸转化：苯丙酮尿症（PKU）患者禁苯丙氨酸，<b>酪氨酸反而变成他们的"必需氨基酸"</b>。</div></div>
+    <div class="mini"><b>限制氨基酸：木桶短板</b><div class="eg">食物蛋白的"质量"取决于最缺的那种 EAA。谷物普遍缺<b>赖氨酸</b>，豆类缺<b>含硫氨基酸（蛋氨酸）</b>——两者同吃，短板互补，这就是"谷豆搭配"的科学内核。</div></div>
+  </div>
+
+  <div class="formula">氨基酸池（~100g 游离氨基酸）→ 合成身体蛋白 / 功能含氮物 / 脱氨供能
+    <small>池子极小、周转极快（每天 200~300g 蛋白质进出）——"随吃随用"的流水池，不是仓库</small>
+  </div>
+
+  <div class="ex"><b>📋 转氨基：氨基酸的"换头手术"</b>
+  两种氨基酸在<b>转氨酶（ALT、AST）</b>催化下互换氨基：一种氨基酸把 -NH₂ 交给另一种α-酮酸，自己变成酮酸、对方变成新氨基酸。这样"非必需"氨基酸就能被拼装出来。你体检单上的<b>ALT/AST 就是转氨酶</b>——它们大量存在于肝细胞里，升高通常提示肝细胞受损漏出（也是"蛋白代谢核心在肝"的证据之一）。</div>
+</section>
+
+<section id="turnover">
+  <h2><span class="cn">3</span>合成与周转：身体的肌肉账本</h2>
+  <p class="sec-sub">预计 20 分钟 · 长肌肉 = 收入 > 支出，且要"开对发票"</p>
+
+  <p>你的身体每天拆掉又重建 <b>200~300g</b> 蛋白质（ turnover，周转）。肌肉不是"练的时候长的"——训练其实是<b>拆</b>和<b>下达重建订单</b>，真正的增长发生在之后的恢复期：<b>肌肉蛋白合成（MPS）> 肌肉蛋白分解（MPB）</b>，账本才是正的。</p>
+
+  <div class="tbl-wrap"><table>
+    <tr><th>账本项目</th><th>促进合成（收入）</th><th>造成分解（支出）</th></tr>
+    <tr><td>核心开关</td><td>每餐含 <b>2.5~3g 亮氨酸</b>（≈25~40g 优质蛋白）+ 抗阻训练信号（mTOR 通路）</td><td>热量不足、长期不动（卧床一周肌肉流失可达 1~2kg）、炎症/疾病</td></tr>
+    <tr><td>时间窗</td><td>每餐刺激 MPS 约 2~3 小时，之后进入"不应期（refractory period）"，短时间再喂也不复燃</td><td>夜间空腹延长分解——老人睡前一杯奶有循证依据</td></tr>
+    <tr><td>杠杆排序</td><td colspan="2"><b>抗阻训练 &gt; 总量与分配 &gt; 蛋白质来源质量 &gt; 补剂</b>——不练，吃再多也只是"燃料"</td></tr>
+  </table></div>
+
+  <div class="tip"><b>💡 直觉理解：为什么"分三餐吃"比"晚上一顿吃够"强</b>
+  MPS 像点火：每次点火需要足量"引信"（亮氨酸阈值≈2.5g），点着后烧 2~3 小时自动熄灭，短时间再喂也不复燃（不应期）。30g×3 餐 ≫ 90g×1 餐——前者点火 3 次，后者只有 1 次还伴随大量氨基酸被浪费烧掉。老人对"引信"不敏感（合成抵抗），阈值还要更高。</div>
+
+  <div class="do"><b>🧪 运动人群实操共识（ISSN 立场等汇总）</b>
+  增肌期蛋白 1.6~2.2 g/kg/天；每餐 0.4g/kg 左右、分 3~5 餐；训练前后均可，全天总量与分配比"黄金窗口"更重要；乳清=快蛋白（亮氨酸高），酪蛋白=慢蛋白（缓释，适合睡前）；植物蛋白总量相应上调（见第 5 章 DIAAS）。</div>
+</section>
+
+<section id="urea">
+  <h2><span class="cn">4</span>氨的出路：尿素循环（考点大户）</h2>
+  <p class="sec-sub">预计 15 分钟 · 氨有毒，肝是唯一解场</p>
+
+  <p>氨基酸脱下的氨基变成<b>氨（NH₃/NH₄⁺）</b>——对细胞（尤其脑）有毒性。身体的处理路线是一条单行道：</p>
+
+  <div class="card">
+    <p style="margin-top:0;font-size:15px">
+    <b>外周组织</b>（肌肉等）脱氨 → 以<b>谷氨酰胺 / 丙氨酸</b>（无毒运输形式）经血液 → <b>肝</b> → <b>尿素循环（Urea Cycle，肝细胞内）</b>：氨 + CO₂ + 天冬氨酸 → <b>尿素</b>（无毒、水溶）→ 血液 → <b>肾</b> → 随尿排出。<br><br>
+    三个器官各司其职：<b>肌肉=氨的产生与暂存搬运，肝=唯一能跑完整尿素循环的解毒厂，肾=出口</b>。这就是"肝衰→血氨升高→肝性脑病"、"肾衰→尿素排不出（血尿素氮 BUN 升高）"的生化学底层。</p>
+  </div>
+
+  <div class="formula">2 NH₃ + CO₂ + 3 ATP → 尿素 → 肾排出
+    <small>每排 1 个尿素花 3 个 ATP——"吃高蛋白还得多喝水"的生化依据（稀释+排尿负荷）</small>
+  </div>
+
+  <div class="pit"><b>⚠️"高蛋白伤肾"——证据怎么说？</b>
+  <b>健康人</b>：现有 RCT 与综述（Devries 2018 等，长达 1 年、2.5~3.5 g/kg/天）未发现肾功能损害——"伤肾"缺乏健康人群证据。<br>
+  <b>已有慢性肾病（CKD）者</b>：确需控制蛋白（低蛋白饮食延缓进展，指南明确）。<br>
+  结论：<b>肾病人群的医嘱 ≠ 健康人的禁区</b>。高蛋白人群注意补水、搭配蔬果（嘌呤与钙平衡）即可。</div>
+
+  <div class="sci"><b>🔬 科研视角</b>
+  尿素循环障碍（UCD，遗传病）是"生化教科书变成临床"的典型：循环中任一酶缺陷 → 血氨骤升 → 意识障碍。另外，运动营养领域的"氨阈"研究（血氨与疲劳）和老年肌少症干预，都是围绕这条通路展开的活跃方向。</div>
+</section>
+
+<section id="need">
+  <h2><span class="cn">5</span>需要量与食物：吃多少、怎么配</h2>
+  <p class="sec-sub">预计 25 分钟 · 用计算器代替背数字</p>
+
+  <div class="widget">
+    <div class="w-head">🧪 互动实验室：每日蛋白质需要量计算器</div>
+    <p class="w-desc">拖动体重、点选你的状态，立刻得到每日目标克数与食物换算（按中国居民膳食指南与运动营养共识区间）。</p>
+    <div class="ctrl"><label>体重（kg）</label><input type="range" id="pnW" min="40" max="100" step="1" value="60"><span class="val" id="pnWVal">60</span></div>
+    <div class="ctrl"><label>你的状态</label>
+      <button class="wbtn w-tab" data-g="1.0">普通轻体力</button>
+      <button class="wbtn w-tab active" data-g="1.2">健身规律</button>
+      <button class="wbtn w-tab" data-g="1.6">增肌期</button>
+      <button class="wbtn w-tab" data-g="1.3">老年人</button>
+    </div>
+    <div class="pred-out" style="display:flex;gap:18px;align-items:center;flex-wrap:wrap;margin:8px 0">
+      <div><div class="big-num" id="pnNum">—</div><div style="font-size:12.5px;color:var(--muted)">每日蛋白质目标 (g)</div></div>
+      <div style="flex:1;min-width:260px" id="pnFoods"></div>
+    </div>
+    <div class="w-stat" id="pnEq"></div>
+    <div class="w-note">👉 换算基准（近似值）：1 个鸡蛋≈7g、250ml 牛奶≈8g、100g 鸡胸/鱼≈20g、100g 北豆腐≈12g、50g 瘦猪牛羊肉≈10g、100g 米饭≈2.5g。分配建议：目标 ÷ 3~4 餐，每餐不低于 20g（老人 25~30g）。</div>
+  </div>
+
+  <h3>5.2 蛋白质质量：DIAAS 是新的尺子</h3>
+  <div class="tbl-wrap"><table>
+    <tr><th>食物</th><th>蛋白含量（每 100g）</th><th>质量评级（DIAAS 思路）</th><th>备注</th></tr>
+    <tr><td>鸡蛋</td><td>≈13g</td><td>优秀（参照级）</td><td>氨基酸构成接近人体需求，"金标准"之一</td></tr>
+    <tr><td>乳清蛋白</td><td>粉剂 70~90g</td><td>优秀</td><td>亮氨酸高、快蛋白；牛奶的"精华组分"</td></tr>
+    <tr><td>牛奶/酸奶</td><td>3~10g</td><td>优秀</td><td>乳清+酪蛋白混合；酸奶额外益菌群</td></tr>
+    <tr><td>鱼/鸡胸/瘦牛肉</td><td>18~22g</td><td>优秀</td><td>注意烹饪油脂与加工肉问题</td></tr>
+    <tr><td>大豆蛋白</td><td>北豆腐≈12g、豆干≈16g</td><td>良好（植物中最高梯队）</td><td>唯一"全谱"植物蛋白；"植物蛋白劣质"是过时说法</td></tr>
+    <tr><td>谷物（米面）</td><td>7~12g</td><td>受限（缺赖氨酸）</td><td>与豆类同餐互补即解决</td></tr>
+    <tr><td>豌豆/乳清混合</td><td>—</td><td>互补配方</td><td>植物基蛋白粉常用方案，性价比与生态考量</td></tr>
+  </table></div>
+
+  <div class="tip"><b>💡 互补原则一句话</b>
+  <b>谷物缺赖氨酸、豆类缺蛋氨酸——同餐搭配（米饭+豆腐、全麦+豆浆）短板互补，植物蛋白照样能"配齐"。</b>不需要刻意一餐严格配比，全天多样即可。素食人群注意维生素 B12（它只来自动物性食物/强化食品）。</div>
+
+  <div class="do"><b>🧪 普通人一日示范（60kg、健身规律，目标 ≈72g）</b>
+  早餐：鸡蛋 2 个 + 牛奶 250ml（≈22g）｜午餐：鸡胸 100g + 米饭（≈23g）｜晚餐：北豆腐 150g + 鱼 50g（≈24g）——三餐均超 20g 阈值，结构完胜"晚上一顿大鱼大肉"。</div>
+</section>
+
+<section id="myth">
+  <h2><span class="cn">6</span>辟谣速查 · 科研前沿</h2>
+  <p class="sec-sub">预计 12 分钟 · 被问最多的四个问题</p>
+
+  <div class="card">
+    <p style="margin-top:0"><b>Q1：蛋白粉是不是"药"，健康人要不要吃？</b><br>
+    蛋白粉=便捷的食物，不是药也不是神水。饮食里蛋奶肉豆到位就不需要；它解决的是"方便凑量"问题（增肌期、老年食欲差、素食者）。乳清蛋白的"快"在日常餐食尺度上意义有限——<b>全天总量与三餐分配 &gt; 补剂</b>。</p>
+    <p><b>Q2：植物蛋白不如动物蛋白？</b><br>
+    过时的二分法。大豆蛋白是全谱优质蛋白；混合植物饮食通过互补可以完全达标（DIAAS 思路：看"最容易缺的那个"补齐即可）。环境与成本角度，植物蛋白还在持续加分。</p>
+    <p><b>Q3：吃肉长肌肉？</b><br>
+    肌肉合成需要"训练信号 + 每餐足量 EAA"，吃肉只提供原料。不训练时大量吃肉 → 多余氨基酸脱氨供能，氮从尿走。增肌的正确公式：<b>抗阻训练 × 每餐 0.4g/kg 优质蛋白 × 睡眠</b>。</p>
+    <p style="margin-bottom:0"><b>Q4：体检转氨酶高 = 蛋白质吃多了？</b><br>
+    ALT/AST 升高最常见的其实是脂肪肝、饮酒、药物与病毒性肝炎，与"蛋白吃太多"关系很小。转氨酶是"肝细胞漏出标志物"，不是"蛋白摄入量表"。</p>
+  </div>
+
+  <div class="sci"><b>🔬 这个领域正在研究什么（选题雷达）</b>
+  ① <b>肌少症（sarcopenia）干预</b>：老年人合成抵抗 → 更高单餐剂量（25~30g）+ 抗阻的 RCT；② <b>蛋白质杠杆假说</b>：人体会为凑够蛋白而过量摄入总热量（Gosby 2011 等）——肥胖机制的另一种解释；③ <b>氨基酸转运与菌群</b>：PEPT1 多态性、蛋白发酵产物（硫化氢/胺）与肠黏膜；④ <b>餐次分布 vs 总量</b>：白天/夜间 MPS 节律（Groen 2012 等）；⑤ 植物基蛋白配方的 DIAAS 优化与可持续营养。</div>
+</section>
+
+<section id="quiz">
+  <h2><span class="cn">7</span>自测一下</h2>
+  <p class="sec-sub">6 道题，点选项立即判分并给讲解。</p>
+
+  <div class="quiz"><div class="qt">1. 人体无法合成（或合成不足）、必须从食物获取的氨基酸共有：</div>
+    <button class="opt">8 种</button>
+    <button class="opt" data-ok="1">9 种（含组氨酸）</button>
+    <button class="opt">20 种</button>
+    <button class="opt">11 种</button>
+    <div class="exp">✅ 成人必需氨基酸 9 种：组、异亮、亮、赖、蛋（甲硫）、苯丙、苏、色、缬。口诀"甲组携一两本淡书来"。（精氨酸、谷氨酰胺等在特定状态下为"条件必需"。）</div>
+  </div>
+
+  <div class="quiz"><div class="qt">2. 小肠吸收二肽/三肽的转运体是：</div>
+    <button class="opt">SGLT1</button>
+    <button class="opt">GLUT5</button>
+    <button class="opt" data-ok="1">PEPT1</button>
+    <button class="opt">GLUT2</button>
+    <div class="exp">✅ PEPT1 以 H⁺ 协同方式高效吸收寡肽——水解蛋白"吸收快"的生理基础。SGLT1/GLUT5/GLUT2 是糖的门。</div>
+  </div>
+
+  <div class="quiz"><div class="qt">3. 尿素循环的场所与尿素排出的器官分别是：</div>
+    <button class="opt">肌肉 / 皮肤</button>
+    <button class="opt" data-ok="1">肝 / 肾</button>
+    <button class="opt">肝 / 肠</button>
+    <button class="opt">肾 / 肝</button>
+    <div class="exp">✅ 只有肝能跑完整尿素循环（解毒）；尿素经血到肾随尿排出。所以肝衰→血氨↑→肝性脑病；肾衰→血尿素氮（BUN）↑。</div>
+  </div>
+
+  <div class="quiz"><div class="qt">4. 关于"增肌"，下列哪项贡献最大？</div>
+    <button class="opt">每天多吃 50g 蛋白质</button>
+    <button class="opt">训练后立刻喝蛋白粉（错过就白练）</button>
+    <button class="opt" data-ok="1">规律抗阻训练 + 全天蛋白 1.6~2.2g/kg 且三餐分配</button>
+    <button class="opt">睡前一次性吃 90g 蛋白</button>
+    <div class="exp">✅ 训练信号是"订单"，分配决定"点火次数"（每餐 0.4g/kg 左右、2.5~3g 亮氨酸阈值）。"合成窗口只有半小时"已被重复研究弱化；一次性 90g 大量氨基酸反而被氧化浪费。</div>
+  </div>
+
+  <div class="quiz"><div class="qt">5. "米饭+豆腐"的科学依据是：</div>
+    <button class="opt">热量互相抵消</button>
+    <button class="opt" data-ok="1">氨基酸互补：谷物缺赖氨酸，豆类补上；豆类缺含硫氨基酸，谷物补上</button>
+    <button class="opt">豆腐的酶帮助消化米饭</button>
+    <button class="opt">提高食物的热效应</button>
+    <div class="exp">✅ 蛋白质量取决于最短板的必需氨基酸（木桶效应）。谷豆搭配补齐短板，植物蛋白即可满足需求。</div>
+  </div>
+
+  <div class="quiz"><div class="qt">6. 关于"高蛋白伤肾"，证据目前的结论是：</div>
+    <button class="opt">任何人高蛋白都会伤肾</button>
+    <button class="opt">高蛋白对肾有强健作用</button>
+    <button class="opt" data-ok="1">健康人长期较高蛋白未发现肾功能损害；已有慢性肾病者需遵医嘱限蛋白</button>
+    <button class="opt">只有动物蛋白伤肾</button>
+    <div class="exp">✅ 区分人群：健康人（含 2.5~3.5g/kg/天 的 RCT）未见肾损害；CKD 患者低蛋白饮食是标准治疗之一。别把患者医嘱套成全民警告。</div>
+  </div>
+</section>
+
+<footer>本站为教学用简化模型 · 数值为人群参考区间，个体方案请咨询临床营养师 · 用 ZCode 生成 · 2026</footer>
+
+</main>
+</div>
+
+<script>
+function $id(x){return document.getElementById(x);}
+// ================= 1. 消化流水线 =================
+const DIG=[
+ {t:'胃 · 变性与胃蛋白酶',e:'胃酸（pH≈2）让蛋白质三维结构松散变性、暴露肽键；胃蛋白酶切出大片段多肽。蛋白质消化真正"开工"的第一站——碳水过胃只是路过，蛋白在胃是主战场。'},
+ {t:'小肠腔 · 胰酶齐射',e:'胰蛋白酶、糜蛋白酶、弹性蛋白酶、羧肽酶同时注入，从不同位点切，多肽碎成短肽与少量游离氨基酸。'},
+ {t:'刷状缘 · 精加工',e:'肠壁微绒毛上的寡肽酶继续拆：短肽 → 氨基酸 + 二肽/三肽。和碳水一样，"收官精拆"发生在肠壁而非肠腔。'},
+ {t:'过墙吸收',e:'两条通道并行：游离氨基酸走各自的分类转运体（中性/碱性/酸性各走各门）；二肽三肽走 PEPT1（H⁺ 协同、效率更高，吸收量约占 2/3）。'},
+ {t:'肠上皮加工',e:'进入细胞的短肽被胞内肽酶彻底拆成氨基酸；部分谷氨酰胺、谷氨酸、天冬氨酸直接被肠细胞当燃料烧掉——肠是蛋白代谢的活跃器官。'},
+ {t:'门静脉 → 肝',e:'其余氨基酸经门静脉直送肝：合成身体蛋白、造含氮物、或脱氨供能。肝像"总设计师"，决定每批氨基酸的用途优先级。'}
+];
+let digIdx=0;
+function digDraw(){
+  let h='';
+  h+='<line x1="20" y1="105" x2="600" y2="105" stroke="#e2e2f0" stroke-width="3"/>';
+  const xs=[30,126,222,318,414,510], cs=['#4338ca','#4f46e5','#6366f1','#818cf8','#a5b4fc','#3730a3'];
+  const names=['胃','胰酶','刷状缘','过墙','胞内','入肝'];
+  DIG.forEach((s,i)=>{
+    const x=xs[i],done=i<digIdx,cur=i===digIdx;
+    h+='<rect x="'+x+'" y="67" width="84" height="34" rx="8" fill="'+((cur||done)?cs[i]:'#e6e8f4')+'" opacity="'+(cur?'1':(done?'0.5':'0.9'))+'"/>';
+    h+='<text x="'+(x+42)+'" y="89" text-anchor="middle" font-size="12.5" fill="'+(cur?'#fff':(done?'#fff':'#a6abc9'))+'" font-weight="700">'+(i+1)+'</text>';
+    h+='<text x="'+(x+42)+'" y="165" text-anchor="middle" font-size="12" fill="'+(cur?'#4338ca':(done?'#64748b':'#aab0c8'))+'">'+names[i]+'</text>';
+  });
+  h+='<text x="310" y="200" text-anchor="middle" font-size="13" fill="#64748b">'+DIG[digIdx].t+'</text>';
+  $id('digSvg').innerHTML=h;
+  $id('digStep').innerHTML='<b>'+(digIdx+1)+' / 6</b>';
+  $id('digText').innerHTML=DIG[digIdx].e;
+  $id('digPrev').disabled=digIdx===0;
+  $id('digNext').disabled=digIdx===DIG.length-1;
+}
+$id('digNext').addEventListener('click',()=>{if(digIdx<DIG.length-1){digIdx++;digDraw();}});
+$id('digPrev').addEventListener('click',()=>{if(digIdx>0){digIdx--;digDraw();}});
+$id('digReset').addEventListener('click',()=>{digIdx=0;digDraw();});
+digDraw();
+
+// ================= 2. 必需氨基酸卡片 =================
+const EAA=[
+ {n:'亮氨酸 Leu',d:'肌肉合成的"发令枪"：直接激活 mTOR 通路启动 MPS。乳清蛋白受推崇的核心原因（亮氨酸含量高）。缺口：影响生长、蛋白合成效率。'},
+ {n:'异亮氨酸 Ile',d:'亮氨酸兄弟，参与肌肉能量代谢与葡萄糖摄取。遗传代谢病"枫糖尿病（maple syrup urine disease）"即与支链氨基酸分解障碍相关。'},
+ {n:'缬氨酸 Val',d:'支链氨基酸（BCAA）第三员，肌肉组织优先摄取。三者常一起被研究——但单独补 BCAA 不如整体蛋白有用（合成还需其余 EAA）。'},
+ {n:'赖氨酸 Lys',d:'谷物的头号短板！胶原交联、肉碱合成需要它。缺口：食欲下降、儿童生长迟缓。"米饭+豆类"补的就是它。'},
+ {n:'蛋氨酸 Met',d:'含硫氨基酸（豆类的短板）。启动所有蛋白合成的"起始密码子"氨基酸；甲基代谢（同型半胱氨酸通路）核心。缺口：影响肝代谢与甲基化。'},
+ {n:'苯丙氨酸 Phe',d:'可转化为酪氨酸（→多巴胺、肾上腺素前体）。PKU 患者无法代谢它——必须严格限制，此时酪氨酸变成条件必需。'},
+ {n:'苏氨酸 Thr',d:'黏蛋白（肠道润滑保护层）的重要原料——对肠屏障有意义。谷物第二短板。'},
+ {n:'色氨酸 Trp',d:'血清素（5-羟色胺）与褪黑素的前体——情绪与睡眠的营养学主角。谷物第三短板。火鸡"催睡"传说主要因为一餐量与碳水协同。'},
+ {n:'组氨酸 His',d:'血红蛋白与组胺的前体；1998 年后补入成人必需名单（婴幼儿一直需要）。缺口：影响血红蛋白合成。'}
+];
+const eaaBtns=$id('eaaBtns');
+EAA.forEach((s,i)=>{
+  const b=document.createElement('button');
+  b.className='wbtn'+(i===0?' w-tab active':'');
+  b.textContent=s.n.split(' ')[0];
+  b.addEventListener('click',()=>{
+    eaaBtns.querySelectorAll('button').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    eaaShow(i);
+  });
+  eaaBtns.appendChild(b);
+});
+function eaaShow(i){
+  const s=EAA[i];
+  $id('eaaDetail').innerHTML='<b>'+s.n+'（必需）</b><br><span style="font-size:13.5px">'+s.d+'</span>';
+}
+eaaShow(0);
+
+// ================= 3. 需要量计算器 =================
+let pnG=1.2;
+function pnDraw(){
+  const w=+$id('pnW').value;
+  $id('pnWVal').textContent=w;
+  document.querySelectorAll('#pnArea [data-g]').forEach(b=>{});
+  const target=Math.round(w*pnG);
+  $id('pnNum').textContent=target;
+  $id('pnFoods').innerHTML=
+    '<div style="font-size:13.5px;line-height:2">换算成食物（全天）：≈ <b>鸡蛋 '+(target*0.25).toFixed(0)+' 个</b> 或 <b>鸡胸 '+(target*0.5).toFixed(0)+'0g</b> 的量级<br>三餐分配：每餐约 <b>'+Math.round(target/3)+'g</b>（建议不低于 20g，老年 25~30g）</div>';
+  $id('pnEq').innerHTML='计算：'+w+' kg × '+pnG.toFixed(1)+' g/kg/天 = <b>'+target+' g/天</b>　·　普通轻体力 1.0｜健身 1.2~1.6｜增肌 1.6~2.2｜老年 1.2~1.5';
+}
+$id('pnW').addEventListener('input',pnDraw);
+document.querySelectorAll('[data-g]').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('[data-g]').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    pnG=+b.dataset.g;
+    pnDraw();
+  });
+});
+pnDraw();
+
+// ================= 自测 =================
+const quizzes=document.querySelectorAll('.quiz');
+let answered=0,score=0;
+quizzes.forEach(q=>{
+  q.querySelectorAll('.opt').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      if(q.classList.contains('done'))return;
+      q.classList.add('done');answered++;
+      const ok=btn.dataset.ok==='1';
+      if(ok){score++;btn.classList.add('right');}
+      else{btn.classList.add('wrong');
+        const r=q.querySelector('.opt[data-ok="1"]');if(r)r.classList.add('right');}
+      q.querySelector('.exp').style.display='block';
+    });
+  });
+});
+
+// 侧边栏高亮
+const links=[...document.querySelectorAll('nav.sidebar a')];
+const byId=new Map(links.map(a=>[a.getAttribute('href').slice(1),a]));
+const io=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      links.forEach(a=>a.classList.remove('active'));
+      const l=byId.get(e.target.id);
+      if(l)l.classList.add('active');
+    }
+  });
+},{rootMargin:'-25% 0px -65% 0px'});
+document.querySelectorAll('main section[id]').forEach(s=>io.observe(s));
+</script>
+</body>
+</html>
